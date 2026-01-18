@@ -1,0 +1,328 @@
+:root {
+  --primary: #0f172a;
+  --accent: #ca8a04;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --card-bg: #1e293b;
+  --glass: rgba(15, 23, 42, 0.95);
+  --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --nav-height: 80px;
+}
+
+html {
+  /* This should match your --nav-height variable */
+  scroll-padding-top: var(--nav-height);
+  /* Makes the transition smooth rather than an instant jump */
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background-color: var(--primary);
+  color: var(--text-main);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* --- Header & Nav --- */
+.header {
+  height: var(--nav-height);
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo {
+  height: 55px;
+  width: 55px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  object-fit: cover;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.nav-links a:hover {
+  color: var(--accent);
+}
+
+/* --- Hero Slider --- */
+.hero {
+  position: relative;
+  margin-top: var(--nav-height);
+  height: calc(100vh - var(--nav-height));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.slides {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  filter: brightness(40%);
+  transition: opacity 2s ease-in-out;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.hero-text {
+  position: relative;
+  z-index: 10;
+  padding: 1.5rem;
+}
+
+.hero-text h1 {
+  font-size: clamp(2.2rem, 8vw, 5rem);
+  font-weight: 900;
+  margin-bottom: 1rem;
+}
+
+.hero-text h3 {
+  color: var(--accent);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.hero-text p {
+  font-size: 1.5rem;
+}
+
+/* --- Centered Cards (Vision, Mission, Location, Contact) --- */
+.section {
+  padding: 50px 1.5rem;
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--accent);
+  margin: 10px auto 0;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+}
+
+.card,
+.info-card {
+  background: var(--card-bg);
+  margin-top: 2rem;
+  padding: 2.5rem;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: var(--transition);
+}
+
+.hover-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--accent);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* --- Pastors Side-by-Side Grid --- */
+.pastors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  align-items: center;
+  justify-items: center;
+  max-width: 900px;
+  margin: 3rem auto;
+}
+
+.pastor-profile img {
+  width: 100%;
+  max-width: 300px;
+  aspect-ratio: 1 / 1;
+  border-radius: 20px;
+  object-fit: cover;
+  border: 3px solid var(--accent);
+}
+
+.pastor-divider {
+  font-size: 2.5rem;
+  color: var(--accent);
+  font-weight: 800;
+}
+
+/* --- Programme & Lists --- */
+.ministry-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem;
+  list-style: none;
+  margin-top: 2rem;
+}
+
+.ministry-list li {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.programme-box {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 30px;
+  border-left: 6px solid var(--accent);
+  max-width: 750px;
+  margin: 0 auto;
+  margin-top: 2rem;
+  text-align: left;
+}
+
+/* --- Gallery Section Styles --- */
+.gallery-grid {
+  display: grid;
+  /* This creates a responsive grid that fills columns based on width */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+  padding: 20px 0;
+}
+
+.gallery-item {
+  overflow: hidden;
+  border-radius: 15px;
+  height: 250px; /* Fixed height for uniformity */
+  border: 2px solid rgba(255, 255, 255, 0.05);
+  transition: var(--transition);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Prevents image distortion */
+  transition: transform 0.5s ease;
+  cursor: pointer;
+}
+
+/* Hover Effect: Image zooms slightly */
+.gallery-item:hover img {
+  transform: scale(1.1);
+}
+
+.gallery-item:hover {
+  border-color: var(--accent);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.sun-title {
+  color: var(--accent);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.footer {
+  padding: 3rem;
+  background: #000;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+/* --- Mobile Navigation --- */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2.2rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+    z-index: 1100;
+  }
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 50%;
+    height: 100vh;
+    background: var(--primary);
+    flex-direction: column;
+    padding: 100px 1.5rem;
+    transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+  }
+  .nav-links.active {
+    right: 0;
+  }
+  .pastor-divider {
+    display: none;
+  }
+}
+
+/* Mobile Adjustments */
+@media (max-width: 480px) {
+  .gallery-grid {
+    grid-template-columns: 1fr; /* Single column on very small phones */
+  }
+}
